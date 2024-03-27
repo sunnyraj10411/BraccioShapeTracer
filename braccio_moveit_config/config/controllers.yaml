@@ -1,0 +1,9 @@
+controller_list:
+  - name: arm_controller
+    action_ns: "follow_joint_trajectory"
+    type: FollowJointTrajectory
+    joints: [base_joint, shoulder_joint, elbow_joint, wrist_pitch_joint, wrist_roll_joint]
+  - name: gripper_controller
+    action_ns: "follow_joint_trajectory"
+    type: FollowJointTrajectory
+    joints: [gripper_joint, sub_gripper_joint]
