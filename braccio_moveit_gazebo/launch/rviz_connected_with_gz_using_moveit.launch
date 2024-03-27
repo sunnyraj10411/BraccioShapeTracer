@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="connect_braccio" default="false" />
+  <arg name="robot_name" default="kuka" />
+  <arg name="use_ros_control" default="False" />
+  <arg name="use_rviz" default="False" />
+
+  <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+
+  <!-- We resume the logic in empty_world.launch -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find braccio_moveit_gazebo)/worlds/test_ramp_bowl.world"/>
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+  </include>
+
+  <!-- Load the URDF into the ROS Parameter Server -->
+  <include file="$(find braccio_description)/launch/kr5_upload.launch">
+     <arg name="robot_name" value="$(arg robot_name)" />
+     <arg name="use_ros_control" value="$(arg use_ros_control)" />
+  </include>
+
+  <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -model $(arg robot_name) -param robot_description -x 0.0 -y 0.0 -z 0.0"/>
+
+  <include file="$(find braccio_moveit_gazebo)/launch/controller_utils.launch"/>
+
+  <rosparam file="$(find braccio_moveit_gazebo)/config/arm_controller_kr5.yaml" command="load"/>
+  <node name="arm_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn arm_controller" respawn="false" output="screen"/>
+  <node name="gripper_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn gripper_controller" respawn="false" output="screen"/>
+
+  <!-- start moveit: -->
+  <include file="$(find braccio_moveit_config)/launch/start_moveit_connected_with_gz.launch" >
+    <arg name="use_rviz" value="$(arg use_rviz)" />
+  </include>
+
+  <include if="$(arg connect_braccio)" file="$(find braccio_moveit_gazebo)/launch/connect.launch">
+  </include>
+
+</launch>
