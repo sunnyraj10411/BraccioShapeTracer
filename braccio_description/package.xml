@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+  <name>braccio_description</name>
+  <version>1.2.1</version>
+  <description>
+      URDF description for Arduino Braccio robot arms
+  </description>
+
+  <maintainer email="will.stedden@gmail.com">Will Stedden</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>urdf</run_depend>
+
+  <export>
+  </export>
+</package>
