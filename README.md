@@ -2,7 +2,7 @@
 
 
 
-![Braccio Pick+Drop Demo](doc/triangle.gif)
+![Braccio Pick+Drop Demo](doc/triangle1.gif)
 
 ## Install ROS Neotic
 ```
