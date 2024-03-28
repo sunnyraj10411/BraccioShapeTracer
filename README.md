@@ -1,6 +1,12 @@
+![Braccio Pick+Drop Demo](doc/triangle.gif)
+
 Install neotic
 ```
 sudo apt install ros-neotic-desktop-full
+```
+Check if is working properly
+
+```
 gazebo
 gazebo --version
 which gzserver
