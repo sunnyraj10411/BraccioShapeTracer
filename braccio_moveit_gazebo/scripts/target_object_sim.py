@@ -688,7 +688,7 @@ class BraccioObjectTargetInterface(object):
 
 
   def go_to_up(self):
-    self.go_to_j(j0=1.5708,j1=1.5708,j2=1.5708,j3=1.5708)
+    self.go_to_j(j0=-3.1,j1=1.5708,j2=1.5708,j3=1.5708)
 
   def run_eval(self):
     evl_data = []
