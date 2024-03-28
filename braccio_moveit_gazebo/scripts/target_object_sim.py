@@ -422,35 +422,19 @@ class BraccioObjectTargetInterface(object):
   def equilateral_triangle_points(self):
         # Vertices of the equilateral triangle
 
-        print("*************",cart2pol(1,0))
+        #print("*************",cart2pol(1,0))
         
         B = np.array([np.sqrt(3)/6,-0.5])
         C = np.array([np.sqrt(3)/6,0.5])
         A = np.array([-np.sqrt(3)/3,0])
 
-
-        #A = np.array([1/np.sqrt(3), 0])
-        #B = np.array([1/np.sqrt(3) - 0.5, np.sqrt(3)/2])
-        #C = np.array([1/np.sqrt(3) + 0.5, np.sqrt(3)/2])
-
-        #B = np.array([-0.5, -np.sqrt(3)/6])
-        #C = np.array([0.5, -np.sqrt(3)/6])
-        #A = np.array([0, np.sqrt(3)/3])
-
-        # Translate the triangle so that one of the vertices is at (0, 1/√3)
-        #translate_vector = np.array([0, 1/np.sqrt(3)]) - C
-        #A += translate_vector
-        #B += translate_vector
-        #C += translate_vector
-
         # Number of equidistant points on each side (excluding the vertices)
-        num_points = 100
+        num_points = 10
 
         # Initialize list to store coordinates of equidistant points
         equidistant_points = []
 
         # Compute equidistant points on side AB
-        equidistant_points.append(A)
         for i in range(num_points):
             t = (i + 1) / (num_points + 1)  # Parameter for interpolation
             P = (1 - t) * A + t * B
@@ -470,12 +454,29 @@ class BraccioObjectTargetInterface(object):
             P = (1 - t) * C + t * A
             equidistant_points.append(P)
 
+        equidistant_points.append(A)
+
         return equidistant_points
 
 
-  def trace_triangle(self):
+  def trace_pentagon(self):
+        self.go_to_up()
         points = self.regular_pentagon_points()
-        #points = self.equilateral_triangle_points()
+        for point in points:
+            # Assuming implementation of get_draw_targets method
+            s, joint_targets = self.get_draw_targets(point[0]/2.5,point[1]/2.5)
+            #s, joint_targets = self.get_draw_targets(point[0]/1.5,point[1]/1.5)
+            print(joint_targets)
+            # Assuming implementation of go_to_j method
+            self.go_to_j(j0=float(joint_targets[0]), j1=float(joint_targets[1]),
+                             j2=float(joint_targets[2]), j3=float(joint_targets[3]))
+
+
+
+  def trace_triangle(self):
+        self.go_to_up()
+        #points = self.regular_pentagon_points()
+        points = self.equilateral_triangle_points()
 
         for point in points:
             # Assuming implementation of get_draw_targets method
@@ -488,12 +489,11 @@ class BraccioObjectTargetInterface(object):
 
 
   def trace_square(self):
-     
+      #self.go_to_up()
       pi4 = math.pi/4
       pi2 = math.pi/2
 
       #coordinates in on direction
-
       coordinates = [
               (0,1),
               (pi4/4,1.02),
@@ -816,9 +816,9 @@ def print_instructions():
   print ("")
   print ("==================== Instructions: ====================")
   print ("c = calibrate, rerun calibration routine")
-  print ("p = go to a position")
+  print ("j = go to a position")
   print ("s = trace a square")
-  print ("pe = trace a pentagon")
+  print ("p = trace a pentagon")
   print ("t = trace a triangle")
   print ("q = quit program")
   print ("")
@@ -866,21 +866,14 @@ def main():
       if inp=='c':
           bb_targetter.calibrate()
           bb_targetter.go_to_manual('top')
-        if inp2 == 's':
-          bb_targetter.go_to_manual('side')
-      if inp=='r':
-          bb_targetter.reset_target_position()
-      if inp=='b':
-          bb_targetter.go_to_bowl()
-      if inp=='e':
-          bb_targetter.run_eval()
-      if inp=='u':
-          bb_targetter.go_to_up()
-      if inp=='p':
+      if inp=='j':
           bb_targetter.go_to_joint_position()
       if inp=='s':
+          bb_targetter.trace_square()
+      if inp=='t':
           bb_targetter.trace_triangle()
-          #bb_targetter.trace_square()
+      if inp=='p':
+          bb_targetter.trace_pentagon()
 
 
 if __name__ == '__main__':
