@@ -414,7 +414,7 @@ class BraccioObjectTargetInterface(object):
             equidistant_points.append([x, y])
     
         equidistant_points.append(end_point)
-    equidistant_points.append(vertices[i])
+    equidistant_points.append(vertices[0])
     
     return equidistant_points
 
@@ -465,7 +465,6 @@ class BraccioObjectTargetInterface(object):
         for point in points:
             # Assuming implementation of get_draw_targets method
             s, joint_targets = self.get_draw_targets(point[0]/2.5,point[1]/2.5)
-            #s, joint_targets = self.get_draw_targets(point[0]/1.5,point[1]/1.5)
             print(joint_targets)
             # Assuming implementation of go_to_j method
             self.go_to_j(j0=float(joint_targets[0]), j1=float(joint_targets[1]),
@@ -480,7 +479,7 @@ class BraccioObjectTargetInterface(object):
 
         for point in points:
             # Assuming implementation of get_draw_targets method
-            s, joint_targets = self.get_draw_targets(point[0]/2.5,point[1]/2.5)
+            s, joint_targets = self.get_draw_targets(point[0]/1.7,point[1]/1.7)
             #s, joint_targets = self.get_draw_targets(point[0]/1.5,point[1]/1.5)
             print(joint_targets)
             # Assuming implementation of go_to_j method
