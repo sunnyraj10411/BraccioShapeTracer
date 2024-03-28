@@ -31,6 +31,14 @@ catkin_make
 ```
 ## Launch Gazebo
 ```
+source devel/setup.bash
+roslaunch braccio_moveit_gazebo rviz_connected_with_gz_using_moveit.launch
+```
 
+## Launch tracing script
+To be run in another terminal. 
+```
+source devel/setup.bash
+rosrun braccio_moveit_gazebo target_object_sim.py
 ```
 
