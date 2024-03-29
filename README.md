@@ -11,9 +11,10 @@ Update:
 2. Using the latest ROS version as of March 2024.
 
 Changes: 
-1. Allowed full 360-degree motion of the base. 
-2. Made the inverse kinematic solution stable so that solutions are generated for most assessable coordinates. 
-3. The camera angle has been adjusted to a top-down view to see the shapes being traced by the robot.   
+1. Added the path tracing code. 
+2. Enabled full 360-degree motion of the base. 
+3. Made the inverse kinematic solution stable so that solutions are generated for most assessable coordinates. 
+4. The camera angle has been adjusted to a top-down view to see the shapes being traced by the robot.   
 
 
 ![Braccio Pick+Drop Demo](doc/triangle1.gif)
