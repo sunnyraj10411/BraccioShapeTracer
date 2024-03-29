@@ -1,7 +1,7 @@
 # Braccio Shape Tracer
 
 
-The repository uses LLMs to generate coordinates of various shapes that are then traversed using the Braccio robot. Most of the code base has been picked up from https://github.com/lots-of-things/braccio_moveit_gazebo. The following updates and changes have been made. 
+The repository uses Large Language Models (LLMs) to generate coordinates of various shapes that are then traversed using the Braccio robot. The purpose of this repository is to teach students robotic control using LLMs. Most of the code base has been picked up from https://github.com/lots-of-things/braccio_moveit_gazebo. The following updates and changes have been made. 
 
 Update: 
 1. The code base was updated to Python 3 from the previous Python 2. 
