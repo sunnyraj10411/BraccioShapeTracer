@@ -1,8 +1,5 @@
 # Braccio Shape Tracer
 
-This repository contains code for tracing shapes using the Braccio robot in the Gazebo simulation environment. The points for tracing the pentagon were generated using GPT3.5 and can be found in the GPT_Code folder. Even though the correct points are generated, they have to be rearranged so that the robot follows an anticlockwise trace.
-
-This script should be run in another terminal. The script will allow you to choose the shape you want to trace. 
 
 The repository uses LLMs to generate coordinates of various shapes that are then traversed using the Braccio robot. Most of the code base has been picked up from https://github.com/lots-of-things/braccio_moveit_gazebo. The following updates and changes have been made. 
 
