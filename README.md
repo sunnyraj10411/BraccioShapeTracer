@@ -41,7 +41,6 @@ gh repo clone sunnyraj10411/BraccioShapeTracer
 ```
 cd ../
 source /opt/ros/noetic/setup.bash
-go to director 
 catkin_init_workspace
 catkin_make
 ```
