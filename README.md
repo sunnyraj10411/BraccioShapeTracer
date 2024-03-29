@@ -8,7 +8,7 @@ Update:
 2. Using the latest ROS version as of March 2024.
 
 Changes: 
-1. Added the path tracing code. 
+1. Added LLM generated the path tracing code.  
 2. Enabled full 360-degree motion of the base. 
 3. Made the inverse kinematic solution stable so that solutions are generated for most accessible coordinates. 
 4. The camera angle has been adjusted to a top-down view to see the shapes being traced by the robot.   
